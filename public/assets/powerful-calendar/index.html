@@ -1,0 +1,35 @@
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+
+    <main>
+        <div class="calendar-wrapper" id="calendar-wrapper"></div>
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="calendar.min.js"></script>
+    <!-- <script src="calendar.js"></script> -->
+    <script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
+    <script type="text/javascript">
+        var config = `function selectDate(date) {
+            $('#calendar-wrapper').updateCalendarOptions({
+                date: date
+            });
+        }
+
+        var defaultConfig = {
+            weekDayLength: 1,
+            date: '08-05-2021',
+            onClickDate: selectDate,
+            showYearDropdown: true,
+            startOnMonday: true,
+        };
+
+        var calendar = $('#calendar-wrapper').calendar(defaultConfig);`;
+            eval(config);
+            flask.updateCode(config);
+            flask.onUpdate((code) => {
+            try {
+                eval(code);
+            } catch(e) {}
+        });
+    </script>
